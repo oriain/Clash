@@ -9,19 +9,19 @@ public enum RarityType {
     EPIC      (2),
     LEGENDARY (3);
 
-    private int index;
+    private final int index;
     RarityType(int index) {
         this.index = index;
     }
 
-    private static int[] maxLevels = {
+    private static final int[] maxLevels = {
             13, // Common
             11, // Rare
             8,  // Epic
             5   // Legendary
     };
 
-    private static int[] tournamentLevels = {
+    private static final int[] tournamentLevels = {
             9, // Common
             7, // Rare
             4, // Epic

@@ -2,6 +2,7 @@ package com.oriain.Cards.Spells;
 
 import com.oriain.Cards.Enums.RarityType;
 import com.oriain.Cards.Enums.TargetType;
+import com.oriain.Cards.Interfaces.ISpell;
 import com.oriain.Cards.Spell;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by littl on 8/5/2017.
  */
-public class Arrows extends Spell {
+public class Arrows extends Spell implements ISpell {
 
     public static final String Description = "Arrows pepper a large area, damaging all enemies hit. Reduced damage to Crown Towers.";
     public static final RarityType Rarity = RarityType.COMMON;
@@ -51,22 +52,10 @@ public class Arrows extends Spell {
             142  // 13
     };
 
-    public Arrows(int level) {
-        super(level, Rarity);
-    }
-
-    public int getAreaDamage() {
-        return AreaDamage[getLevel()-1];
-    }
-
-    public int getTowerDamage() {
-        return TowerDamage[getLevel()-1];
-    }
-
-    @Override
-    public void ShowStats() {
-        ArrayList<Arrows> allLevels = new ArrayList<>(getMaxLevel());
-        for (int i = 0; i < getMaxLevel(); i++) {
+    public static void ShowStats() {
+        int levels = Rarity.getMaxLevel();
+        ArrayList<Arrows> allLevels = new ArrayList<>(levels);
+        for (int i = 0; i < levels; i++) {
             allLevels.add(i, new Arrows(i+1));
         }
 
@@ -96,4 +85,18 @@ public class Arrows extends Spell {
 
         System.out.println();
     }
+
+    public Arrows(int level) {
+        super(level, Rarity);
+    }
+
+    public int getAreaDamage() {
+        return AreaDamage[getLevel()-1];
+    }
+
+    public int getTowerDamage() {
+        return TowerDamage[getLevel()-1];
+    }
+
+
 }

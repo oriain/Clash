@@ -3,6 +3,7 @@ package com.oriain.Cards.Troops;
 import com.oriain.Cards.Enums.RarityType;
 import com.oriain.Cards.Enums.SpeedType;
 import com.oriain.Cards.Enums.TargetType;
+import com.oriain.Cards.Interfaces.ITroop;
 import com.oriain.Cards.Troop;
 import com.oriain.Utils;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Created by littl on 8/5/2017.
  */
-public class Princess extends Troop {
+public class Princess extends Troop implements ITroop {
 
     public static final String Description = "This stunning Princess shoots flaming arrows from long range. If you're feeling warm feelings towards her, it's probably because you're on fire.";
     public static final RarityType Rarity = RarityType.LEGENDARY;
@@ -44,36 +45,10 @@ public class Princess extends Troop {
 
     public static final int[] DamagePerSecond = Utils.CalculateDamagePerSecond(HitSpeed, AreaDamage);
 
-    public Princess(int level) {
-        super(level, Rarity);
-    }
-
-    public int getHitPoints() {
-        return HitPoints[getLevel()-1];
-    }
-
-    public int getAreaDamage() {
-        return AreaDamage[getLevel()-1];
-    }
-
-    @Override
-    public int getDamagePerSec() {
-        return DamagePerSecond[getLevel()-1];
-    }
-
-    @Override
-    public double getHitSpeed() {
-        return HitSpeed;
-    }
-
-    @Override
-    public TargetType getTroopType() {
-        return TargetType.GROUND;
-    }
-
-    public void ShowStats() {
-        ArrayList<Princess> princesses = new ArrayList<>(getMaxLevel());
-        for (int i = 0; i < getMaxLevel(); i++) {
+    public static void ShowStats() {
+        int levels = Rarity.getMaxLevel();
+        ArrayList<Princess> princesses = new ArrayList<>(levels);
+        for (int i = 0; i < levels; i++) {
             princesses.add(i, new Princess(i+1));
         }
 
@@ -110,4 +85,32 @@ public class Princess extends Troop {
 
         System.out.println();
     }
+
+    public Princess(int level) {
+        super(level, Rarity);
+    }
+
+    public int getHitPoints() {
+        return HitPoints[getLevel()-1];
+    }
+
+    public int getAreaDamage() {
+        return AreaDamage[getLevel()-1];
+    }
+
+    @Override
+    public int getDamagePerSec() {
+        return DamagePerSecond[getLevel()-1];
+    }
+
+    @Override
+    public double getHitSpeed() {
+        return HitSpeed;
+    }
+
+    @Override
+    public TargetType getTroopType() {
+        return TargetType.GROUND;
+    }
+
 }

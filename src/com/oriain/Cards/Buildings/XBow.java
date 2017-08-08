@@ -3,6 +3,7 @@ package com.oriain.Cards.Buildings;
 import com.oriain.Cards.Building;
 import com.oriain.Cards.Enums.RarityType;
 import com.oriain.Cards.Enums.TargetType;
+import com.oriain.Cards.Interfaces.IBuilding;
 import com.oriain.Utils;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by littl on 8/6/2017.
  */
-public class XBow extends Building {
+public class XBow extends Building implements IBuilding {
 
     public static final String Description = "Nice tower you got there. Would be a shame if this X-Bow whittled it down from this side of the Arena...";
     public static final RarityType Rarity = RarityType.EPIC;
@@ -47,26 +48,10 @@ public class XBow extends Building {
 
     public static final int[] DamagePerSecond = Utils.CalculateDamagePerSecond(HitSpeed, Damage);
 
-    public XBow(int level) {
-        super(level, Rarity);
-    }
-
-    public int getHitPoints() {
-        return HitPoints[getLevel()-1];
-    }
-
-    public int getDamage() {
-        return Damage[getLevel()-1];
-    }
-
-    public int getDamagePerSecond() {
-        return DamagePerSecond[getLevel()-1];
-    }
-
-    @Override
-    public void ShowStats() {
-        ArrayList<XBow> xbows = new ArrayList<>(getMaxLevel());
-        for (int i = 0; i < getMaxLevel(); i++) {
+    public static void ShowStats() {
+        int levels = Rarity.getMaxLevel();
+        ArrayList<XBow> xbows = new ArrayList<>(levels);
+        for (int i = 0; i < levels; i++) {
             xbows.add(i, new XBow(i+1));
         }
 
@@ -103,4 +88,22 @@ public class XBow extends Building {
 
         System.out.println();
     }
+
+    public XBow(int level) {
+        super(level, Rarity);
+    }
+
+    public int getHitPoints() {
+        return HitPoints[getLevel()-1];
+    }
+
+    public int getDamage() {
+        return Damage[getLevel()-1];
+    }
+
+    public int getDamagePerSecond() {
+        return DamagePerSecond[getLevel()-1];
+    }
+
+
 }

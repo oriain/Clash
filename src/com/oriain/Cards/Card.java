@@ -6,9 +6,9 @@ import com.oriain.Cards.Enums.RarityType;
  * Created by littl on 8/5/2017.
  */
 public abstract class Card {
-    private RarityType rarity;
+    private final RarityType rarity;
 
-    private int level;
+    private final int level;
 
     public Card(int level, RarityType rarity) {
         this.rarity = rarity;
@@ -16,6 +16,7 @@ public abstract class Card {
         this.level = level;
     }
 
+    @SuppressWarnings("SameReturnValue")
     public int getMinLevel() {
         return 1;
     }
@@ -42,5 +43,5 @@ public abstract class Card {
         }
     }
 
-    public abstract void ShowStats();
+    // public abstract void ShowStats();
 }
